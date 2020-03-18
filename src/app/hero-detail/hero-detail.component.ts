@@ -4,6 +4,8 @@ import { Location } from '@angular/common';
 
 import { Hero }         from '../hero';
 import { HeroService }  from '../hero.service';
+import { PetService } from '../pet.service';
+import { Pet } from '../pet';
 
 @Component({
   selector: 'app-hero-detail',
@@ -12,21 +14,33 @@ import { HeroService }  from '../hero.service';
 })
 export class HeroDetailComponent implements OnInit {
   @Input() hero: Hero;
+  pets: Pet[];
 
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroService,
-    private location: Location
+    private location: Location,
+    private petService: PetService
   ) {}
 
   ngOnInit(): void {
     this.getHero();
+    this.getPets();
   }
 
   getHero(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.heroService.getHero(id)
       .subscribe(hero => this.hero = hero);
+  }
+
+  getPets(): void {
+    this.pets = this.petService.getPets();
+  }
+
+    // Push a search term into the observable stream.
+  search(term: string): void {
+    this.searchTerms.next(term);
   }
 
   goBack(): void {
