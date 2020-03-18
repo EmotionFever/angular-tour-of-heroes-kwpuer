@@ -3,17 +3,19 @@
   <div><span>id: </span>{{hero.id}}</div>
   <div>
     <label>name:
-      <input [(ngModel)]="hero.name" placeholder="name"/>
+      <input [(ngModel)]="hero.id" placeholder="name"/>
     </label>
   </div>
   <div>
     <label>pet:
-        <select  #comboBox id="combo-box" id="comboBoxPets" (input)="update(comboBox.value)" name="pet">
+        <select [(ngModel)]="hero.pet.id" id="comboBoxPets" name="pet">
           <option hidden disabled selected value value="-1">-- Choose a pet --</option>
-          <option *ngFor="let pet of pets" value="{{pet.id}}">{{pet.name}}</option>
+          <option *ngFor="let pet of pets" [value]="pet.id">{{pet.name}}</option>
         </select>
     </label>
-  </div>
+
+  <p>Selected option: {{ hero.pet.id }}</p>
+  
   <button (click)="goBack()">go back</button>
   <button (click)="save()">save</button>
 </div>

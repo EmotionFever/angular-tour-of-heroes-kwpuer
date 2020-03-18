@@ -13,4 +13,8 @@ export class PetService {
     return PETS;
   }
 
+  getPet(id: string): Pet{
+    return PETS.find(pet => pet.id === id);
+  }
+
 }

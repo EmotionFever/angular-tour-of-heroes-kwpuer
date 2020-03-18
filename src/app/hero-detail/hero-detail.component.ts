@@ -24,6 +24,7 @@ export class HeroDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    //this.hero = { id: 0, name: '', pet: { id: -1, name: '' } };
     this.getHero();
     this.getPets();
   }
@@ -31,16 +32,21 @@ export class HeroDetailComponent implements OnInit {
   getHero(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.heroService.getHero(id)
-      .subscribe(hero => this.hero = hero);
+      .subscribe(hero => {this.hero = hero;
+                          if(this.hero.pet == null) {
+                            this.hero.pet = { id: -1, name: '' };
+                          }
+                            });
+
   }
 
   getPets(): void {
     this.pets = this.petService.getPets();
   }
 
-    // Push a search term into the observable stream.
-  search(term: string): void {
-    this.searchTerms.next(term);
+  // Push a search term into the observable stream.
+  update(petId: string): void {
+    this.hero.pet = this.petService.getPet(petId);
   }
 
   goBack(): void {
