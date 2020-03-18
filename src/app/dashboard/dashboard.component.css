@@ -48,6 +48,7 @@ h4 {
 .grid-pad > [class*='col-']:last-of-type {
   padding-right: 20px;
 }
+
 @media (max-width: 600px) {
   .module {
     font-size: 10px;
@@ -60,4 +61,13 @@ h4 {
   .module {
     min-width: 60px;
   }
+}
+.pet {
+  padding: 2px;
+  margin: 0;
+  text-align: center;
+  color: rgb(109, 109, 109);
+  max-height: 50px;
+  background-color: #ddffd0;
+  border-radius: 2px;
 }

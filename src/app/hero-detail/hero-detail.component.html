@@ -5,16 +5,15 @@
     <label>name:
       <input [(ngModel)]="hero.id" placeholder="name"/>
     </label>
+    <br>
+    <label>pet:
+      <select [(ngModel)]="hero.pet.id" id="comboBoxPets" name="pet">
+        <option hidden disabled selected value value="-1">-- Choose a pet --</option>
+        <option *ngFor="let pet of pets" [value]="pet.id">{{pet.name}}</option>
+      </select>
+    </label>
   </div>
   <div>
-    <label>pet:
-        <select [(ngModel)]="hero.pet.id" id="comboBoxPets" name="pet">
-          <option hidden disabled selected value value="-1">-- Choose a pet --</option>
-          <option *ngFor="let pet of pets" [value]="pet.id">{{pet.name}}</option>
-        </select>
-    </label>
-
-  <p>Selected option: {{ hero.pet.id }}</p>
   
   <button (click)="goBack()">go back</button>
   <button (click)="save()">save</button>

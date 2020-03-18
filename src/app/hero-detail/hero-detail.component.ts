@@ -44,16 +44,16 @@ export class HeroDetailComponent implements OnInit {
     this.pets = this.petService.getPets();
   }
 
-  // Push a search term into the observable stream.
-  update(petId: string): void {
-    this.hero.pet = this.petService.getPet(petId);
-  }
-
   goBack(): void {
     this.location.back();
   }
 
  save(): void {
+   if(this.hero.pet != null) {
+     console.log(this.hero.pet.id);
+     this.hero.pet = this.petService.getPet(this.hero.pet.id);
+     console.log(this.hero.pet.name);
+   }
     this.heroService.updateHero(this.hero)
       .subscribe(() => this.goBack());
   }
